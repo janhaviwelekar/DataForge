@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MedLink Explainer</title>
+
+    <!-- Vis Network -->
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f6f8fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 24px;
+        }
+
+        header {
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #1f2937;
+        }
+
+        header p {
+            color: #6b7280;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .answer-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        .evidence-item {
+            border-left: 4px solid #2563eb;
+            padding: 12px;
+            background: #f9fafb;
+        }
+
+        .score {
+            font-size: 13px;
+            color: #2563eb;
+            margin-top: 6px;
+        }
+
+        #network {
+            height: 420px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>🧬 MedLink Explainer</h1>
+            <p>Ask evidence-based medical questions with explainable AI (prototype built on Lung Cancer topic)</p>
+
+            <form method="POST" class="search-box">
+                <input type="text" name="query" placeholder="Ask a medical question…" required>
+                <button type="submit">Ask</button>
+            </form>
+        </header>
+
+        {% if answer %}
+
+        <div class="card">
+            <h3>✅ AI-Generated Answer</h3>
+            <p class="answer-text">{{ answer }}</p>
+        </div>
+
+        <div class="card">
+            <h3>📄 Supporting Evidence</h3>
+            <div class="evidence-grid">
+                {% for chunk, score in evidence %}
+                <div class="evidence-item">
+                    {{ chunk }}
+                    <div class="score">Relevance score: {{ "%.2f"|format(score) }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🧠 Explanation Graph</h3>
+            <div id="network"></div>
+        </div>
+
+        <script>
+            const nodes = new vis.DataSet({{ nodes | tojson | safe }});
+            const edges = new vis.DataSet({{ edges | tojson | safe }});
+
+            const container = document.getElementById("network");
+            const data = { nodes, edges };
+
+            const options = {
+                physics: { enabled: true },
+                edges: {
+                    arrows: { to: { enabled: true } },
+                    color: "#9ca3af"
+                },
+                nodes: {
+                    shape: "box",
+                    color: {
+                        background: "#e0e7ff",
+                        border: "#2563eb"
+                    }
+                }
+            };
+
+            new vis.Network(container, data, options);
+        </script>
+
+        {% endif %}
+
+        <footer>
+            MedLink Explainer · Explainable Medical RAG System
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
