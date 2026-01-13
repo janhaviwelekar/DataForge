@@ -46,10 +46,10 @@ DataForge/
 ├── app.py                 # Flask application entry point
 ├── retrieval.py           # Document retrieval logic (TF-IDF)
 ├── entity_graph.py        # Entity extraction and graph construction
-├── answer.py              # Answer generation logic
-├── lung_cancer.txt        # Sample medical document (corpus)
+├── answer.py              # Answer generation logic   
 ├── templates/
 │   └── index.html         # Web UI (answer, evidence, explanation graph)
+    └── lung_cancer.txt    # corpus of data
 ├── graph.html             # Optional standalone graph visualization
 ├── requirements.txt       # Python dependencies
 
