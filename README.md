@@ -137,5 +137,3 @@ By replacing the document corpus and entity schema, the same pipeline can be app
 This repository accompanies the **DataForge Challenge submission** and serves as a **demonstration prototype** for the proposed explainable RAG system.
 
 
-
-You’re doing great — this is **submission-quality work** ✅
