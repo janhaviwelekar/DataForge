@@ -2,7 +2,7 @@
 
 # Explainable RAG – DataForge Prototype
 
-This repository contains a **minimal working prototype** of an **Explainable Retrieval-Augmented Generation (RAG)** system developed as part of the **DataForge Challenge**.
+This repository contains a **minimal working prototype** of an **Explainable Retrieval-Augmented Generation (RAG)** system developed as part of the **DataForge Challenge** by E-SUMMIT,IIT-Roorkee.
 
 The system demonstrates how a language-model-based question answering pipeline can be made **transparent and interpretable** by grounding answers in retrieved documents and exposing a **lightweight knowledge graph** (entities and relationships) derived from the same evidence.
 
