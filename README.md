@@ -118,17 +118,17 @@ This directly reflects the explainable RAG design described in the accompanying 
 
 * The prototype is **intentionally simple** and optimized for interpretability, not performance
 * The knowledge graph is **query-specific** and not persisted
-* Entity extraction quality depends on retrieved text
+* Entity extraction quality depends on retrieved text the most
 * No external knowledge bases or complex reasoning are used
 
-These trade-offs were made deliberately to preserve transparency and clarity.
+These trade-offs were made deliberately to preserve transparency and clarity...
 
 ---
 
 ## 🌐 Domain Generality
 
 Although demonstrated on a medical dataset, the architecture is **domain-agnostic**.
-By replacing the document corpus and entity schema, the same pipeline can be applied to legal, technical, or policy documents.
+By replacing the document corpus and entity schema, the same pipeline can be applied to legal, technical, or policy documents making it versatile for each approach and context.
 
 ---
 
